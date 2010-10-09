@@ -22,7 +22,7 @@ namespace CassandraWorkBench
 
         private void ColumnListView_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = data;
+            searchResultDataGridView.DataSource = data;
         }
     }
 }

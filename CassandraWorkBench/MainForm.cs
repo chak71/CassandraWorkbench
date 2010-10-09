@@ -22,7 +22,9 @@ namespace CassandraWorkBench
     {
         System.Text.Encoding utf8Encoding = System.Text.Encoding.UTF8; 
 
+        TSocket socket socket;
         Cassandra.Client client;
+
         private string host = "localhost";
         private int port = 9160;
         private THashSet<string> keySpaces;
@@ -34,7 +36,7 @@ namespace CassandraWorkBench
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            TSocket socket = new TSocket(host, port);
+            socket = new TSocket(host, port);
             socket.Open();
 
             TBinaryProtocol protocol = new TBinaryProtocol(socket);
@@ -153,10 +155,44 @@ namespace CassandraWorkBench
             }
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
 
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           this.socket.Close();
+        }
+
+        private void cascadeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(MdiLayout.Cascade);
+        }
+
+        private void horizontalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+             this.LayoutMdi(MdiLayout.TileHorizontal);
+        }
+
+        private void verticalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+             this.LayoutMdi(MdiLayout.TileVertical);
+        }
+
+        private void arrangeIconsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(MdiLayout.ArrangeIcons);
+        }
+
+        private void addKeySpaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            client.
+        }
+
+
 
     }
 }

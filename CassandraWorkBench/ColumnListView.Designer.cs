@@ -28,35 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.searchResultDataGridView = new System.Windows.Forms.DataGridView();
+            this.searchPanel = new System.Windows.Forms.Panel();
+            this.searchSplitter = new System.Windows.Forms.Splitter();
+            this.columnContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.searchResultDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // searchResultDataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(703, 541);
-            this.dataGridView1.TabIndex = 0;
+            this.searchResultDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.searchResultDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchResultDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.searchResultDataGridView.Name = "searchResultDataGridView";
+            this.searchResultDataGridView.Size = new System.Drawing.Size(703, 541);
+            this.searchResultDataGridView.TabIndex = 0;
+            // 
+            // searchPanel
+            // 
+            this.searchPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.searchPanel.Location = new System.Drawing.Point(0, 0);
+            this.searchPanel.Name = "searchPanel";
+            this.searchPanel.Size = new System.Drawing.Size(703, 100);
+            this.searchPanel.TabIndex = 1;
+            // 
+            // searchSplitter
+            // 
+            this.searchSplitter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.searchSplitter.Location = new System.Drawing.Point(0, 100);
+            this.searchSplitter.Name = "searchSplitter";
+            this.searchSplitter.Size = new System.Drawing.Size(703, 3);
+            this.searchSplitter.TabIndex = 2;
+            this.searchSplitter.TabStop = false;
+            // 
+            // columnContextMenuStrip
+            // 
+            this.columnContextMenuStrip.Name = "columnContextMenuStrip";
+            this.columnContextMenuStrip.Size = new System.Drawing.Size(153, 26);
             // 
             // ColumnListView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 541);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.searchSplitter);
+            this.Controls.Add(this.searchPanel);
+            this.Controls.Add(this.searchResultDataGridView);
             this.Name = "ColumnListView";
             this.Text = "ColumnListView";
             this.Load += new System.EventHandler(this.ColumnListView_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchResultDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView searchResultDataGridView;
+        private System.Windows.Forms.Panel searchPanel;
+        private System.Windows.Forms.Splitter searchSplitter;
+        private System.Windows.Forms.ContextMenuStrip columnContextMenuStrip;
     }
 }

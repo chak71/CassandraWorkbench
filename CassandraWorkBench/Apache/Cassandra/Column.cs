@@ -20,7 +20,8 @@ namespace Apache.Cassandra
   {
     private byte[] name;
     private byte[] value;
-    private long timestamp;
+    private Clock clock;
+    private int ttl;
 
     public byte[] Name
     {
@@ -48,16 +49,29 @@ namespace Apache.Cassandra
       }
     }
 
-    public long Timestamp
+    public Clock Clock
     {
       get
       {
-        return timestamp;
+        return clock;
       }
       set
       {
-        __isset.timestamp = true;
-        this.timestamp = value;
+        __isset.clock = true;
+        this.clock = value;
+      }
+    }
+
+    public int Ttl
+    {
+      get
+      {
+        return ttl;
+      }
+      set
+      {
+        __isset.ttl = true;
+        this.ttl = value;
       }
     }
 
@@ -67,7 +81,8 @@ namespace Apache.Cassandra
     public struct Isset {
       public bool name;
       public bool value;
-      public bool timestamp;
+      public bool clock;
+      public bool ttl;
     }
 
     public Column() {
@@ -102,9 +117,18 @@ namespace Apache.Cassandra
             }
             break;
           case 3:
-            if (field.Type == TType.I64) {
-              this.timestamp = iprot.ReadI64();
-              this.__isset.timestamp = true;
+            if (field.Type == TType.Struct) {
+              this.clock = new Clock();
+              this.clock.Read(iprot);
+              this.__isset.clock = true;
+            } else { 
+              TProtocolUtil.Skip(iprot, field.Type);
+            }
+            break;
+          case 4:
+            if (field.Type == TType.I32) {
+              this.ttl = iprot.ReadI32();
+              this.__isset.ttl = true;
             } else { 
               TProtocolUtil.Skip(iprot, field.Type);
             }
@@ -138,12 +162,20 @@ namespace Apache.Cassandra
         oprot.WriteBinary(this.value);
         oprot.WriteFieldEnd();
       }
-      if (__isset.timestamp) {
-        field.Name = "timestamp";
-        field.Type = TType.I64;
+      if (this.clock != null && __isset.clock) {
+        field.Name = "clock";
+        field.Type = TType.Struct;
         field.ID = 3;
         oprot.WriteFieldBegin(field);
-        oprot.WriteI64(this.timestamp);
+        this.clock.Write(oprot);
+        oprot.WriteFieldEnd();
+      }
+      if (__isset.ttl) {
+        field.Name = "ttl";
+        field.Type = TType.I32;
+        field.ID = 4;
+        oprot.WriteFieldBegin(field);
+        oprot.WriteI32(this.ttl);
         oprot.WriteFieldEnd();
       }
       oprot.WriteFieldStop();
@@ -156,8 +188,10 @@ namespace Apache.Cassandra
       sb.Append(this.name);
       sb.Append(",value: ");
       sb.Append(this.value);
-      sb.Append(",timestamp: ");
-      sb.Append(this.timestamp);
+      sb.Append(",clock: ");
+      sb.Append(this.clock== null ? "<null>" : this.clock.ToString());
+      sb.Append(",ttl: ");
+      sb.Append(this.ttl);
       sb.Append(")");
       return sb.ToString();
     }

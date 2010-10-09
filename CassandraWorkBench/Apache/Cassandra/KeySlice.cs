@@ -18,10 +18,10 @@ namespace Apache.Cassandra
   [Serializable]
   public partial class KeySlice : TBase
   {
-    private string key;
+    private byte[] key;
     private List<ColumnOrSuperColumn> columns;
 
-    public string Key
+    public byte[] Key
     {
       get
       {
@@ -72,7 +72,7 @@ namespace Apache.Cassandra
         {
           case 1:
             if (field.Type == TType.String) {
-              this.key = iprot.ReadString();
+              this.key = iprot.ReadBinary();
               this.__isset.key = true;
             } else { 
               TProtocolUtil.Skip(iprot, field.Type);
@@ -82,13 +82,13 @@ namespace Apache.Cassandra
             if (field.Type == TType.List) {
               {
                 this.columns = new List<ColumnOrSuperColumn>();
-                TList _list8 = iprot.ReadListBegin();
-                for( int _i9 = 0; _i9 < _list8.Count; ++_i9)
+                TList _list12 = iprot.ReadListBegin();
+                for( int _i13 = 0; _i13 < _list12.Count; ++_i13)
                 {
-                  ColumnOrSuperColumn _elem10 = new ColumnOrSuperColumn();
-                  _elem10 = new ColumnOrSuperColumn();
-                  _elem10.Read(iprot);
-                  this.columns.Add(_elem10);
+                  ColumnOrSuperColumn _elem14 = new ColumnOrSuperColumn();
+                  _elem14 = new ColumnOrSuperColumn();
+                  _elem14.Read(iprot);
+                  this.columns.Add(_elem14);
                 }
                 iprot.ReadListEnd();
               }
@@ -115,7 +115,7 @@ namespace Apache.Cassandra
         field.Type = TType.String;
         field.ID = 1;
         oprot.WriteFieldBegin(field);
-        oprot.WriteString(this.key);
+        oprot.WriteBinary(this.key);
         oprot.WriteFieldEnd();
       }
       if (this.columns != null && __isset.columns) {
@@ -125,9 +125,9 @@ namespace Apache.Cassandra
         oprot.WriteFieldBegin(field);
         {
           oprot.WriteListBegin(new TList(TType.Struct, this.columns.Count));
-          foreach (ColumnOrSuperColumn _iter11 in this.columns)
+          foreach (ColumnOrSuperColumn _iter15 in this.columns)
           {
-            _iter11.Write(oprot);
+            _iter15.Write(oprot);
             oprot.WriteListEnd();
           }
         }
