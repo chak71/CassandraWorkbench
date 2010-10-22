@@ -54,6 +54,7 @@
             this.hostNameTextBox.Name = "hostNameTextBox";
             this.hostNameTextBox.Size = new System.Drawing.Size(181, 20);
             this.hostNameTextBox.TabIndex = 1;
+            this.hostNameTextBox.Text = "localhost";
             // 
             // portLabel
             // 
@@ -70,6 +71,7 @@
             this.portTextBox.Name = "portTextBox";
             this.portTextBox.Size = new System.Drawing.Size(181, 20);
             this.portTextBox.TabIndex = 3;
+            this.portTextBox.Text = "9160";
             // 
             // connectButton
             // 
@@ -79,6 +81,7 @@
             this.connectButton.TabIndex = 4;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
+            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
             // 
             // userNameLabel
             // 
